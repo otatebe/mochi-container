@@ -38,5 +38,8 @@ RUN cd \
  && spack external find automake autoconf libtool cmake m4 pkgconf \
  && spack install mochi-margo ^mercury~boostsys ^libfabric fabrics=rxm,sockets,tcp,udp \
  && spack install mochi-thallium \
- && echo ". ~/spack/share/spack/setup-env.sh" >> .bashrc \
- && echo "PATH=$HOME/workspace/bin:$PATH; export PATH" >> .bashrc
+ && printf '%s\n' \
+    '. $HOME/spack/share/spack/setup-env.sh' \
+    'export PATH=$HOME/workspace/bin:$PATH' \
+    'export LD_LIBRARY_PATH=$HOME/workspace/lib:$LD_LIBRARY_PATH' \
+    >> .bashrc
