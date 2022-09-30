@@ -17,6 +17,8 @@ x-common:
     - seccomp:unconfined
     - apparmor:unconfined
   privileged: false
+  networks:
+    - mochi_net
   command: >
     bash -c "sudo service ssh restart && sleep infinity"
 
@@ -25,15 +27,35 @@ services:
     <<: *x-common
     hostname: c1
     container_name: c1
+    networks:
+      mochi_net:
+        ipv4_address: 192.168.10.11
   c2:
     <<: *x-common
     hostname: c2
     container_name: c2
+    networks:
+      mochi_net:
+        ipv4_address: 192.168.10.12
   c3:
     <<: *x-common
     hostname: c3
     container_name: c3
+    networks:
+      mochi_net:
+        ipv4_address: 192.168.10.13
   c4:
     <<: *x-common
     hostname: c4
     container_name: c4
+    networks:
+      mochi_net:
+        ipv4_address: 192.168.10.14
+
+networks:
+  mochi_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.10.0/24
