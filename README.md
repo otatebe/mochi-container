@@ -3,7 +3,7 @@
 This provides a four-node virtual cluster by docker to develop
 distributed systems in Mochi-Margo.
 
-There are four containers; c1, c2, c3, and c4.
+Container hostnames are c1, c2, c3, and c4.
 The workspace in a container is ~/workspace,
 which is shared among all containers.
 
@@ -23,12 +23,14 @@ Install Docker Engine
 
 You can login to a container as follows
 
-    $ docker exec -it c1 bash
+    $ docker exec -it mochi-c1 bash
     $ cd
 
 or
 
-    $ ssh $(docker exec -it c1 hostname -i)
+    $ docker exec -it mochi-c1 hostname -i
+    192.168.0.5
+    $ ssh 192.168.0.5
 
 ## Execute docker containers by VS Code dev containers
 
