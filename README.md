@@ -51,12 +51,12 @@ Target programs; server and client, are installed in ~/workspace/bin, which is s
 ## Execute a server
 
     $ server
-    Server running at address na+sm://6564-0
+    Server running at address ofi+tcp;ofi_rxm://192.168.10.11:36083
 
 ## Execute a client
 Specify the server address, key and value
 
-    $ client na+sm://6564-0 111 222
+    $ client 'ofi+tcp;ofi_rxm://192.168.10.11:36083' 111 222
 
 ## Login to other containers in a container
 
