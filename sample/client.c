@@ -53,7 +53,7 @@ init(const char *server)
 {
 	hg_return_t ret;
 
-	env.mid = margo_init("na+sm", MARGO_CLIENT_MODE, 0, 0);
+	env.mid = margo_init("tcp", MARGO_CLIENT_MODE, 0, 0);
 	assert(env.mid);
 
 	ret = margo_addr_lookup(env.mid, server, &env.serv_addr);
