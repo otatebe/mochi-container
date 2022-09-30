@@ -28,9 +28,7 @@ You can login to a container as follows
 
 or
 
-    $ docker exec -it mochi-c1 hostname -i
-    192.168.0.5
-    $ ssh 192.168.0.5
+    $ ssh $(docker exec mochi-c1 hostname -i)
 
 ## Execute docker containers by VS Code dev containers
 
