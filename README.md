@@ -7,7 +7,7 @@ Container hostnames are c1, c2, c3, and c4.
 The workspace in a container is ~/workspace,
 which is shared among all containers.
 
-This directory also includes sample programs in Mochi-Margo, and CMakeLists.txt.
+This directory also includes sample programs in Mochi-Margo.
 
 ## Prerequisites for Windows
 
@@ -35,28 +35,6 @@ or
 - Install VS Code and Remote Containers extension
 - Open this directory
 - Open a command palette by Ctrl+Shift+P and execute "Remote-Containers: Rebulid and Reopen in Container"
-
-## How to compile sample programs in ~/workspace
-
-    $ cd sample
-    $ mkdir build
-    $ cd build
-    $ spack load mochi-margo
-    $ cmake -DCMAKE_INSTALL_PREFIX=$HOME/workspace ..
-    $ make
-    $ make install
-
-Target programs; server and client, are installed in ~/workspace/bin, which is shared among containers.  This directory is included in PATH environment variable by ~/.bashrc.
-
-## Execute a server
-
-    $ server
-    Server running at address na+sm://6564-0
-
-## Execute a client
-Specify the server address, key and value
-
-    $ client na+sm://6564-0 111 222
 
 ## Login to other containers in a container
 
