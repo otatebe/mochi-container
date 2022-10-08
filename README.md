@@ -40,4 +40,11 @@ or
 
     $ ssh c2
 
+## Install new packages in a container
+
+    $ sudo apt-get update
+    $ sudo apt-get install ...
+
+or modify Dockerfile
+
 Enjoy!
