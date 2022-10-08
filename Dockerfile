@@ -6,7 +6,7 @@ RUN apt-get update \
  && apt-get -y upgrade \
  && apt-get -y install gcc autoconf automake \
  && apt-get -y install cmake libtool pkgconf \
- && apt-get -y install git python3 fuse sudo vim curl \
+ && apt-get -y install git python3 bison fuse sudo vim curl \
  && apt-get -y install libfuse-dev libssl-dev
 
 RUN \
@@ -35,7 +35,7 @@ USER $USERNAME
 RUN cd \
  && git clone -c feature.manyFiles=true --depth 1 https://github.com/spack/spack.git \
  && . spack/share/spack/setup-env.sh \
- && spack external find automake autoconf libtool cmake m4 pkgconf \
+ && spack external find automake autoconf libtool cmake m4 pkgconf bison \
  && spack install mochi-margo ^mercury~boostsys ^libfabric fabrics=rxm,sockets,tcp,udp \
  && spack install mochi-thallium \
  && printf '%s\n' \
