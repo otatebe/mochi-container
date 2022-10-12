@@ -4,7 +4,7 @@ ARG USERNAME=foo
 
 RUN apt-get update \
  && apt-get -y upgrade \
- && apt-get -y install gcc autoconf automake \
+ && apt-get -y install gcc automake \
  && apt-get -y install cmake libtool pkgconf \
  && apt-get -y install git python3 bison fuse sudo vim curl \
  && apt-get -y install libfuse-dev libssl-dev
