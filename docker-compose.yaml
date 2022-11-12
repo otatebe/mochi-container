@@ -8,6 +8,8 @@ x-common:
   volumes:
     - .:/home/$USER/workspace:cached
   init: true
+  networks:
+    - mochi_net
   cap_add:
     - SYS_ADMIN
     - SYS_PTRACE
@@ -37,3 +39,6 @@ services:
     <<: *x-common
     hostname: c4
     container_name: mochi-c4
+
+networks:
+  mochi_net:
