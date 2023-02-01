@@ -71,5 +71,6 @@ main(int argc, char *argv[])
 			exit(1);
 	init(argv[1]);
 	call_put(argv[2], argv[3]);
+	margo_finalize(env.mid);
 	return (0);
 }
