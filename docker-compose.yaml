@@ -1,10 +1,12 @@
-x-common:
-  &x-common
+x-build: &x-build
   build:
     context: .
     dockerfile: Dockerfile
     args:
       USERNAME: $USER
+
+x-common: &x-common
+  image: mochi-container
   volumes:
     - .:/home/$USER/workspace:cached
   init: true
@@ -24,7 +26,7 @@ x-common:
 
 services:
   c1:
-    <<: *x-common
+    <<: [*x-build, *x-common]
     hostname: c1
     container_name: mochi-c1
   c2:
