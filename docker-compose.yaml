@@ -1,7 +1,6 @@
 x-build: &x-build
   build:
     context: .
-    dockerfile: Dockerfile
     args:
       USERNAME: $USER
 
