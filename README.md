@@ -33,7 +33,7 @@ Install Docker Engine
 
 or
 
-    $ docker compose build --build-arg UID=$(shell id -u) c1
+    $ docker compose build --build-arg UID=$(id -u) c1
     $ docker compose up -d
     $ docker exec -u ${USER} -w /home/${USER}/workspace -it mochi-c1 bash
 
