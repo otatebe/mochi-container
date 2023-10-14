@@ -6,7 +6,7 @@ namespace tl = thallium;
 
 int main(int argc, char **argv)
 {
-    tl::engine myEngine("tcp", THALLIUM_CLIENT_MODE);
+    tl::engine myEngine("na+sm", THALLIUM_CLIENT_MODE);
     tl::remote_procedure put = myEngine.define("put");
     tl::endpoint server = myEngine.lookup(argv[1]);
     std::string key = argv[2];

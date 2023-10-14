@@ -1,6 +1,6 @@
 # Sample program
 
-This is a sample program in Mochi-margo.  This makes the following local function to a remote procedure call.
+This is a sample program in Mochi-thallium.  This makes the following local function to a remote procedure call.
 ```
 int
 put(const char *key, const char *value)
@@ -13,7 +13,7 @@ put(const char *key, const char *value)
 
     $ mkdir build
     $ cd build
-    $ spack load mochi-margo
+    $ spack load mochi-thallium
     $ cmake -DCMAKE_INSTALL_PREFIX=$HOME/workspace ..
     $ make
     $ make install

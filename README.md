@@ -1,13 +1,13 @@
 # Mochi-Margo Workspace
 
 This provides a four-node virtual cluster by docker to develop
-distributed systems in Mochi-Margo.
+distributed systems in Mochi-Margo and Mochi-Thallium.
 
 Container hostnames are c1, c2, c3, and c4.
 The workspace in a container is ~/workspace,
 which is shared among all containers.
 
-This directory also includes sample programs in Mochi-Margo.
+This directory also includes sample programs in Mochi-Margo and Mochi-Thallium.
 
 ## Prerequisites for Windows
 
@@ -36,9 +36,9 @@ or
 - Open this directory
 - Open a command palette by Ctrl+Shift+P and execute "Remote-Containers: Rebulid and Reopen in Container"
 
-## Sample program
+## Sample programs
 
-There is a sample program in Mochi-margo in the sample directory.  See [README](./sample/README.md) for details.
+There are sample programs in Mochi-margo in the sample directory, and in Thallium in the thallium-sample directory.
 
 ## Login to other containers in a container
 
