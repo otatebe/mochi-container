@@ -9,6 +9,13 @@ which is shared among all containers.
 
 This directory also includes sample programs in Mochi-Margo and Mochi-Thallium.
 
+## About Mochi-Margo and Mochi-Thallium
+
+Margo is a C library that helps develop distributed services based on RPC and RDMA.  Thallium is a complete object-oriented wrapper for Margo in C++.
+
+Document [ [Margo](https://mochi.readthedocs.io/en/latest/margo.html) | [Thallium](https://mochi.readthedocs.io/en/latest/thallium.html) ]<br>
+Repository [ [Margo](https://github.com/mochi-hpc/mochi-margo) | [Thallium](https://github.com/mochi-hpc/mochi-thallium) ]
+
 ## Prerequisites for Windows
 
 Install WSL
