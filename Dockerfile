@@ -35,6 +35,18 @@ RUN id $UID && userdel $(id -un $UID) || : \
  # delete passwd
  && passwd -d $USERNAME
 
+ARG LIBFABRIC_VER=1.21.0
+
+RUN cd \
+ && wget https://github.com/ofiwg/libfabric/archive/refs/tags/v$LIBFABRIC_VER.tar.gz \
+ && tar zxfp v$LIBFABRIC_VER.tar.gz \
+ &&  cd libfabric-$LIBFABRIC_VER \
+ && ./autogen.sh \
+ && mkdir build && cd build \
+ && ../configure \
+ && make -j $(nproc) && make install \
+ && ldconfig
+
 ARG MERCURY_VER=2.3.1
 
 RUN cd \
@@ -42,8 +54,8 @@ RUN cd \
  && tar zxfp v$MERCURY_VER.tar.gz \
  && cd mercury-$MERCURY_VER \
  && mkdir build && cd build \
- && cmake -DMERCURY_USE_BOOST_PP:BOOL=ON -DBUILD_SHARED_LIBS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Debug .. \
- && make && make install \
+ && cmake -DNA_USE_OFI:BOOL=ON -DMERCURY_USE_BOOST_PP:BOOL=ON -DBUILD_SHARED_LIBS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Debug .. \
+ && make -j $(nproc) && make install \
  && ldconfig
 
 ARG ARGOBOTS_VER=1.2
@@ -54,7 +66,7 @@ RUN cd \
  && cd argobots-$ARGOBOTS_VER \
  && mkdir build && cd build \
  && ../configure \
- && make && make install \
+ && make -j $(nproc) && make install \
  && ldconfig
 
 ARG MARGO_VER=0.16.0
@@ -66,7 +78,7 @@ RUN cd \
  && ./prepare.sh \
  && mkdir build && cd build \
  && ../configure \
- && make && make install \
+ && make -j $(nproc) && make install \
  && ldconfig
 
 ARG THALLIUM_VER=0.12.0
@@ -77,7 +89,7 @@ RUN cd \
  && cd mochi-thallium-$THALLIUM_VER \
  && mkdir build && cd build \
  && cmake .. \
- && make && make install \
+ && make -j $(nproc) && make install \
  && ldconfig
 
 USER $USERNAME
