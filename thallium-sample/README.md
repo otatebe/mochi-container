@@ -13,7 +13,6 @@ put(const char *key, const char *value)
 
     $ mkdir build
     $ cd build
-    $ spack load mochi-thallium
     $ cmake -DCMAKE_INSTALL_PREFIX=$HOME/workspace ..
     $ make
     $ make install

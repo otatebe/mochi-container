@@ -29,6 +29,8 @@ Install Docker Engine
 
 ## Execute docker containers by Docker Engine and login to a container
 
+    $ make build
+    $ make up
     $ make
 
 or

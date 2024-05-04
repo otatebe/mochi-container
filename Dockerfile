@@ -5,9 +5,11 @@ ARG UID=1000
 
 RUN apt-get update \
  && apt-get -y upgrade \
- && apt-get -y install gcc automake \
+ && apt-get -y install gcc g++ automake \
  && apt-get -y install cmake libtool pkgconf \
- && apt-get -y install git python3 bison fuse sudo vim curl \
+ && apt-get -y install libjson-c-dev libboost-dev \
+ && apt-get -y install libcereal-dev \
+ && apt-get -y install git fuse sudo curl wget \
  && apt-get -y install libfuse-dev libssl-dev
 
 RUN \
@@ -27,20 +29,59 @@ RUN \
     '    StrictHostKeyChecking no' \
     > /etc/ssh/ssh_config.d/ignore-host-key.conf
 
-RUN useradd -m -u $UID -s /bin/bash $USERNAME \
+RUN id $UID && userdel $(id -un $UID) || : \
+ && useradd -m -u $UID -s /bin/bash $USERNAME \
  && echo "$USERNAME ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers.d/$USERNAME \
  # delete passwd
  && passwd -d $USERNAME
 
+ARG MERCURY_VER=2.3.1
+
+RUN cd \
+ && wget https://github.com/mercury-hpc/mercury/archive/refs/tags/v$MERCURY_VER.tar.gz \
+ && tar zxfp v$MERCURY_VER.tar.gz \
+ && cd mercury-$MERCURY_VER \
+ && mkdir build && cd build \
+ && cmake -DMERCURY_USE_BOOST_PP:BOOL=ON -DBUILD_SHARED_LIBS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Debug .. \
+ && make && make install \
+ && ldconfig
+
+ARG ARGOBOTS_VER=1.2
+
+RUN cd \
+ && wget https://github.com/pmodels/argobots/releases/download/v$ARGOBOTS_VER/argobots-$ARGOBOTS_VER.tar.gz \
+ && tar zxfp argobots-$ARGOBOTS_VER.tar.gz \
+ && cd argobots-$ARGOBOTS_VER \
+ && mkdir build && cd build \
+ && ../configure \
+ && make && make install \
+ && ldconfig
+
+ARG MARGO_VER=0.16.0
+
+RUN cd \
+ && wget https://github.com/mochi-hpc/mochi-margo/archive/refs/tags/v$MARGO_VER.tar.gz \
+ && tar zxfp v$MARGO_VER.tar.gz \
+ && cd mochi-margo-$MARGO_VER \
+ && ./prepare.sh \
+ && mkdir build && cd build \
+ && ../configure \
+ && make && make install \
+ && ldconfig
+
+ARG THALLIUM_VER=0.12.0
+
+RUN cd \
+ && wget https://github.com/mochi-hpc/mochi-thallium/archive/refs/tags/v$THALLIUM_VER.tar.gz \
+ && tar zxfp v$THALLIUM_VER.tar.gz \
+ && cd mochi-thallium-$THALLIUM_VER \
+ && mkdir build && cd build \
+ && cmake .. \
+ && make && make install \
+ && ldconfig
+
 USER $USERNAME
 RUN cd \
- && git clone -c feature.manyFiles=true --depth 1 https://github.com/spack/spack.git \
- && . spack/share/spack/setup-env.sh \
- && spack external find automake autoconf libtool cmake m4 pkgconf bison \
- && spack install mochi-margo ^mercury~boostsys ^libfabric fabrics=rxm,sockets,tcp,udp \
- && spack install mochi-thallium \
  && printf '%s\n' \
-    '. $HOME/spack/share/spack/setup-env.sh' \
     'export PATH=$HOME/workspace/bin:$PATH' \
-    'export LD_LIBRARY_PATH=$HOME/workspace/lib:$LD_LIBRARY_PATH' \
     >> .bashrc
