@@ -5,12 +5,11 @@ ARG UID=1000
 
 RUN apt-get update \
  && apt-get -y upgrade \
- && apt-get -y install gcc g++ automake \
- && apt-get -y install cmake libtool pkgconf \
- && apt-get -y install libjson-c-dev libboost-dev \
- && apt-get -y install libcereal-dev \
- && apt-get -y install git fuse sudo curl wget \
- && apt-get -y install libfuse-dev libssl-dev
+ && DEBIAN_FRONTEND=noninteractive apt-get -y install \
+    gcc g++ automake cmake libtool pkgconf \
+    libjson-c-dev libboost-dev libcereal-dev \
+    git vim fuse sudo curl wget \
+    libfuse-dev libssl-dev
 
 RUN \
   # sshd
