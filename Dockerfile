@@ -65,7 +65,7 @@ RUN cd \
  && tar zxfp argobots-$ARGOBOTS_VER.tar.gz \
  && cd argobots-$ARGOBOTS_VER \
  && mkdir build && cd build \
- && ../configure \
+ && ../configure --enable-perf-opt --enable-affinity --disable-checks \
  && make -j $(nproc) && make install \
  && ldconfig
 
