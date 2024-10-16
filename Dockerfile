@@ -34,7 +34,7 @@ RUN id $UID && userdel $(id -un $UID) || : \
  # delete passwd
  && passwd -d $USERNAME
 
-ARG LIBFABRIC_VER=1.21.0
+ARG LIBFABRIC_VER=1.22.0
 
 RUN cd \
  && wget https://github.com/ofiwg/libfabric/archive/refs/tags/v$LIBFABRIC_VER.tar.gz \
@@ -68,7 +68,7 @@ RUN cd \
  && make -j $(nproc) && make install \
  && ldconfig
 
-ARG MARGO_VER=0.16.0
+ARG MARGO_VER=0.18.1
 
 RUN cd \
  && wget https://github.com/mochi-hpc/mochi-margo/archive/refs/tags/v$MARGO_VER.tar.gz \
@@ -80,7 +80,7 @@ RUN cd \
  && make -j $(nproc) && make install \
  && ldconfig
 
-ARG THALLIUM_VER=0.12.0
+ARG THALLIUM_VER=0.14.5
 
 RUN cd \
  && wget https://github.com/mochi-hpc/mochi-thallium/archive/refs/tags/v$THALLIUM_VER.tar.gz \
