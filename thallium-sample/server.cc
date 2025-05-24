@@ -13,7 +13,9 @@ void put(const tl::request &req, std::string key, std::string value)
 int main(int argc, char **argv)
 {
     tl::engine myEngine("na+sm", THALLIUM_SERVER_MODE);
-    std::cout << "Server running at address " << myEngine.self() << std::endl;
     myEngine.define("put", put);
-    return 0;
+    std::cout << "Server running at address " << myEngine.self() << std::endl;
+    myEngine.wait_for_finalize();
+
+    return (0);
 }
