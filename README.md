@@ -19,25 +19,31 @@ Repository [ [Margo](https://github.com/mochi-hpc/mochi-margo) | [Thallium](http
 ## Prerequisites for Windows
 
 Install WSL
-- https://learn.microsoft.com/en-us/windows/wsl/install
+
+- <https://learn.microsoft.com/en-us/windows/wsl/install>
 
 ## Prerequisities
 
 Install Docker Engine
-- https://docs.docker.com/engine/install/ubuntu/ (for Ubuntu)
-- https://docs.docker.com/engine/install/centos/ (for CentOS)
+
+- <https://docs.docker.com/engine/install/ubuntu/> (for Ubuntu)
+- <https://docs.docker.com/engine/install/centos/> (for CentOS)
 
 ## Execute docker containers by Docker Engine and login to a container
 
-    $ make build
-    $ make up
-    $ make
+```console
+$ make build
+$ make up
+$ make
+```
 
 or
 
-    $ docker compose build --build-arg UID=$(id -u) c1
-    $ docker compose up -d
-    $ docker exec -u ${USER} -w /home/${USER}/workspace -it mochi-c1 bash
+```console
+$ docker compose build --build-arg UID=$(id -u) c1
+$ docker compose up -d
+$ docker exec -u ${USER} -w /home/${USER}/workspace -it mochi-c1 bash
+```
 
 ## Execute docker containers by VS Code dev containers and login to a container
 
@@ -51,22 +57,31 @@ There are sample programs in Mochi-margo in the sample directory, and in Thalliu
 
 ## Login to other containers in a container
 
-    $ ssh c2
+```console
+$ ssh c2
+```
 
 ## Install new packages in a container
 
-    $ sudo apt-get update
-    $ sudo apt-get install ...
+```console
+$ sudo apt-get update
+$ sudo apt-get install ...
+```
 
 or modify Dockerfile
 
 ## Stop containers
 
-    (in a host)
-    $ make down
+(in a host)
+
+```console
+$ make down
+```
 
 or
 
-    $ docker compose down
+```console
+$ docker compose down
+```
 
 Enjoy!
