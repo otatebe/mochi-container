@@ -53,7 +53,7 @@ $ docker exec -u ${USER} -w /home/${USER}/workspace -it mochi-c1 bash
 
 ## Sample programs
 
-There are sample programs in Mochi-margo in the sample directory, and in Thallium in the thallium-sample directory.
+There are sample programs in Mochi-margo in the [sample](sample) directory, and in Thallium in the [thallium-sample](thallium-sample) directory.
 
 ## Login to other containers in a container
 
