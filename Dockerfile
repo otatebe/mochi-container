@@ -8,7 +8,7 @@ RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get -y install \
     gcc g++ automake cmake libtool pkgconf \
     git python3 curl wget bzip2 xz-utils sudo vim \
-    libfuse-dev
+    libfuse-dev fuse
 
 RUN \
   # sshd
