@@ -6,7 +6,7 @@ ARG UID=1000
 RUN apt-get update \
  && apt-get -y upgrade \
  && DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    gcc g++ automake cmake libtool pkgconf \
+    gcc g++ automake cmake libtool pkgconf hwloc \
     git python3 curl wget bzip2 xz-utils sudo vim \
     libfuse-dev fuse
 
@@ -38,7 +38,7 @@ RUN cd \
  && git clone -c feature.manyFiles=true --depth 1 https://github.com/spack/spack.git \
  && . spack/share/spack/setup-env.sh \
  && (cd spack && git clone https://github.com/mochi-hpc/mochi-spack-packages.git && spack repo add mochi-spack-packages) \
- && spack external find autoconf automake libtool cmake m4 pkgconf \
+ && spack external find autoconf automake libtool cmake m4 coreutils hwloc pkgconf \
  && spack install mochi-thallium ^mercury~boostsys ^libfabric fabrics=rxm,sockets,tcp,udp \
  && printf '%s\n' \
     '. $HOME/spack/share/spack/setup-env.sh' \
