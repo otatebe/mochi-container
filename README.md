@@ -29,6 +29,8 @@ Install Docker Engine
 - <https://docs.docker.com/engine/install/ubuntu/> (for Ubuntu)
 - <https://docs.docker.com/engine/install/centos/> (for CentOS)
 
+To allow docker compose to run with user privileges, add $USER to the docker group by `sudo usermod -aG docker $USER`
+
 ## Execute docker containers by Docker Engine and login to a container
 
 ```console
