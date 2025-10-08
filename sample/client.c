@@ -63,6 +63,13 @@ init(const char *server)
 	env.put_rpc = MARGO_REGISTER(env.mid, "put", put_in_t, int32_t, NULL);
 }
 
+static void
+term(void)
+{
+	margo_addr_free(env.mid, env.serv_addr);
+	margo_finalize(env.mid);
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -71,6 +78,6 @@ main(int argc, char *argv[])
 			exit(1);
 	init(argv[1]);
 	call_put(argv[2], argv[3]);
-	margo_finalize(env.mid);
+	term();
 	return (0);
 }
