@@ -7,7 +7,7 @@ RUN apt-get update \
  && apt-get -y upgrade \
  && DEBIAN_FRONTEND=noninteractive apt-get -y install \
     gcc g++ automake cmake libtool pkgconf hwloc libhwloc-dev \
-    git python3 curl wget bzip2 xz-utils sudo vim \
+    locales git python3 curl wget bzip2 xz-utils sudo vim \
     libfuse-dev fuse
 
 RUN \
@@ -31,7 +31,8 @@ RUN id $UID && userdel $(id -un $UID) || : \
  && useradd -m -u $UID -s /bin/bash $USERNAME \
  && echo "$USERNAME ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers.d/$USERNAME \
  # delete passwd
- && passwd -d $USERNAME
+ && passwd -d $USERNAME \
+ && locale-gen en_US.UTF-8
 
 USER $USERNAME
 RUN cd \
