@@ -42,9 +42,10 @@ $ make
 or
 
 ```console
-$ docker compose build --build-arg UID=$(id -u) c1
+$ echo HOST_UID=$(id -u) > .env
+$ docker compose build c1
 $ docker compose up -d
-$ docker exec -u ${USER} -w /home/${USER}/workspace -it mochi-c1 bash
+$ docker exec -u mochi -w /home/mochi/workspace -it mochi-c1 bash
 ```
 
 ## Execute docker containers by VS Code dev containers and login to a container
