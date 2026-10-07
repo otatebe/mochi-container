@@ -1,11 +1,16 @@
 login:
 	docker exec -u mochi -w /home/mochi/workspace -it mochi-c1 bash
 
-build:
-	docker compose build --build-arg UID=$(shell id -u) c1
+build: env
+	docker compose build c1
 
-up:
+up: env
 	docker compose up -d
 
 down:
 	docker compose down
+
+env:
+	echo HOST_UID=$(shell id -u) > .env
+
+.PHONY: login build up down env

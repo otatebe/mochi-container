@@ -1,6 +1,8 @@
 x-build: &x-build
   build:
     context: .
+    args:
+      UID: ${HOST_UID:-1000}
 
 x-common: &x-common
   image: mochi-container

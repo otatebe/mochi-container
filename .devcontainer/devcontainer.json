@@ -16,7 +16,10 @@
 
 	// The optional 'workspaceFolder' property is the path VS Code should open by default when
 	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
-	"workspaceFolder": "/home/mochi/workspace"
+	"workspaceFolder": "/home/mochi/workspace",
+
+	// Pass the host UID to docker compose so that the container user can write to the workspace.
+	"initializeCommand": "echo HOST_UID=$(id -u) > .env"
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
