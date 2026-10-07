@@ -2,12 +2,12 @@ x-build: &x-build
   build:
     context: .
     args:
-      USERNAME: $USER
+      UID: ${HOST_UID:-1000}
 
 x-common: &x-common
   image: mochi-container
   volumes:
-    - .:/home/$USER/workspace:cached
+    - .:/home/mochi/workspace:cached
   init: true
   networks:
     - mochi_net
