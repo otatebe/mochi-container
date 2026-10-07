@@ -27,14 +27,21 @@ RUN \
     '    StrictHostKeyChecking no' \
     > /etc/ssh/ssh_config.d/ignore-host-key.conf
 
-RUN id $UID && userdel $(id -un $UID) || : \
- && useradd -m -u $UID -s /bin/bash $USERNAME \
+RUN if [ "$UID" -eq 0 ]; then \
+      # host is root (e.g. Codespaces): make $USERNAME an alias of UID 0
+      useradd -o -m -u 0 -g 0 -s /bin/bash $USERNAME; \
+    else \
+      (id $UID && userdel $(id -un $UID) || :) \
+      && useradd -m -u $UID -s /bin/bash $USERNAME; \
+    fi \
  && echo "$USERNAME ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers.d/$USERNAME \
  # delete passwd
  && passwd -d $USERNAME \
  && locale-gen en_US.UTF-8
 
 USER $USERNAME
+# when UID is 0, HOME would otherwise resolve to /root
+ENV HOME=/home/$USERNAME
 RUN cd \
  && git clone -c feature.manyFiles=true --depth 1 https://github.com/spack/spack.git \
  && . spack/share/spack/setup-env.sh \
