@@ -1,5 +1,5 @@
 login:
-	docker exec -u ${USER} -w /home/${USER}/workspace -it mochi-c1 bash
+	docker exec -u mochi -w /home/mochi/workspace -it mochi-c1 bash
 
 build:
 	docker compose build --build-arg UID=$(shell id -u) c1

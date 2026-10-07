@@ -1,6 +1,6 @@
 FROM ubuntu
 
-ARG USERNAME=foo
+ARG USERNAME=mochi
 ARG UID=1000
 
 RUN apt-get update \
