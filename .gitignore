@@ -1,6 +1,5 @@
 /.env
 /bin
-/ring
 /sample/build
 /spack-packages
 /thallium-sample/build

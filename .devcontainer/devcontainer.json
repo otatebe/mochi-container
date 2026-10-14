@@ -19,7 +19,25 @@
 	"workspaceFolder": "/home/mochi/workspace",
 
 	// Pass the host UID to docker compose so that the container user can write to the workspace.
-	"initializeCommand": "echo HOST_UID=$(id -u) > .env"
+	"initializeCommand": "echo HOST_UID=$(id -u) > .env",
+
+	// Check out submodules (ring).  GitHub Codespaces does not clone them.
+	// updateContentCommand also runs in Codespaces prebuilds.
+	"updateContentCommand": "git submodule update --init --recursive",
+
+	// The Codespaces token only covers this repository by default.
+	// Request read access to the private submodule repository.
+	"customizations": {
+		"codespaces": {
+			"repositories": {
+				"naohanpen-assignments/mochi-container-ring-component": {
+					"permissions": {
+						"contents": "read"
+					}
+				}
+			}
+		}
+	}
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],

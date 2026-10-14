@@ -31,6 +31,22 @@ Install Docker Engine
 
 To allow docker compose to run with user privileges, add $USER to the docker group by `sudo usermod -aG docker $USER`
 
+## Clone this repository
+
+The [ring](ring) directory is a git submodule.  Clone with `--recursive`
+
+```console
+$ git clone --recursive https://github.com/naohanpen-assignments/mochi-container
+```
+
+or, if already cloned without it,
+
+```console
+$ git submodule update --init
+```
+
+VS Code dev containers and GitHub Codespaces check it out automatically.
+
 ## Execute docker containers by Docker Engine and login to a container
 
 ```console
@@ -57,6 +73,10 @@ $ docker exec -u mochi -w /home/mochi/workspace -it mochi-c1 bash
 ## Sample programs
 
 There are sample programs in Mochi-margo in the [sample](sample) directory, and in Thallium in the [thallium-sample](thallium-sample) directory.
+
+## Ring component
+
+The [ring](ring) directory is a submodule of [mochi-container-ring-component](https://github.com/naohanpen-assignments/mochi-container-ring-component).
 
 ## Login to other containers in a container
 
