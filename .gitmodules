@@ -1,0 +1,3 @@
+[submodule "ring"]
+	path = ring
+	url = https://github.com/naohanpen-assignments/mochi-container-ring-component
