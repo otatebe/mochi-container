@@ -49,6 +49,7 @@ RUN cd \
  && spack install mochi-thallium ^mercury~boostsys ^libfabric fabrics=rxm,sockets,tcp,udp \
  && printf '%s\n' \
     '. $HOME/spack/share/spack/setup-env.sh' \
+    'spack load mochi-thallium' \
     'export PATH=$HOME/workspace/bin:$PATH' \
     'export LD_LIBRARY_PATH=$HOME/workspace/lib:$LD_LIBRARY_PATH' \
     >> .bashrc
