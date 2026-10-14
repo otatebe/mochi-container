@@ -45,6 +45,8 @@ or, if already cloned without it,
 $ git submodule update --init
 ```
 
+VS Code dev containers and GitHub Codespaces check it out automatically.
+
 ## Execute docker containers by Docker Engine and login to a container
 
 ```console
