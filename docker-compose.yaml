@@ -3,6 +3,8 @@ x-build: &x-build
     context: .
     args:
       USERNAME: $USER
+      # set by .devcontainer initializeCommand; make build passes --build-arg
+      UID: ${UID:-1000}
 
 x-common: &x-common
   image: mochi-container

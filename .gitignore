@@ -2,3 +2,4 @@
 /sample/build
 /spack-packages
 /thallium-sample/build
+/.env
