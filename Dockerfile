@@ -27,9 +27,15 @@ RUN \
     '    StrictHostKeyChecking no' \
     > /etc/ssh/ssh_config.d/ignore-host-key.conf
 
-RUN id $UID && userdel $(id -un $UID) || : \
- && useradd -m -u $UID -s /bin/bash $USERNAME \
- && echo "$USERNAME ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers.d/$USERNAME \
+RUN if [ "$UID" -eq 0 ]; then \
+      # root: workspace is mounted at /home/root/workspace
+      [ "$USERNAME" = root ] || { echo "USERNAME must be root when UID=0" >&2; exit 1; }; \
+      ln -s /root /home/root; \
+    else \
+      { id $UID && userdel $(id -un $UID) || :; } \
+      && useradd -m -u $UID -s /bin/bash $USERNAME \
+      && echo "$USERNAME ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers.d/$USERNAME; \
+    fi \
  # delete passwd
  && passwd -d $USERNAME \
  && locale-gen en_US.UTF-8

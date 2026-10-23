@@ -14,6 +14,9 @@
 	// use. Update this value and .devcontainer/docker-compose.yml to the real service name.
 	"service": "c1",
 
+	// Pass the host UID to docker compose via .env (bash does not export UID)
+	"initializeCommand": "echo UID=$(id -u) > .env",
+
 	// The optional 'workspaceFolder' property is the path VS Code should open by default when
 	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
 	"workspaceFolder": "/home/${localEnv:USER}/workspace"
