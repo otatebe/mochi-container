@@ -22,7 +22,7 @@ Install WSL
 
 - <https://learn.microsoft.com/en-us/windows/wsl/install>
 
-## Prerequisities
+## Prerequisites
 
 Install Docker Engine
 
@@ -30,6 +30,8 @@ Install Docker Engine
 - <https://docs.docker.com/engine/install/centos/> (for CentOS)
 
 To allow docker compose to run with user privileges, add $USER to the docker group by `sudo usermod -aG docker $USER`
+
+Running docker as root also works.
 
 ## Execute docker containers by Docker Engine and login to a container
 
@@ -49,9 +51,11 @@ $ docker exec -u ${USER} -w /home/${USER}/workspace -it mochi-c1 bash
 
 ## Execute docker containers by VS Code dev containers and login to a container
 
-- Install VS Code and Remote Containers extension
-- Open this directory
-- Open a command palette by Ctrl+Shift+P and execute "Remote-Containers: Rebulid and Reopen in Container"
+- Install VS Code and the Dev Containers extension
+- Open this directory in VS Code from WSL (or Linux) by `code .`
+- Open a command palette by Ctrl+Shift+P and execute "Dev Containers: Rebuild and Reopen in Container"
+
+The host UID is written to `.env` before the containers are created.
 
 ## Sample programs
 
